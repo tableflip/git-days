@@ -1,0 +1,40 @@
+{
+  "name": "git-days",
+  "version": "0.0.0",
+  "description": "How many days did you work on that project?",
+  "main": "index.js",
+  "bin": {
+    "git-days": "bin/git-days.js"
+  },
+  "dependencies": {
+    "cli-color-tty": "^1.0.1",
+    "cli-table": "^0.3.1",
+    "git-log": "^0.0.1",
+    "minimist": "^1.1.1",
+    "moment": "^2.10.3",
+    "multi-stream": "^1.0.0",
+    "once": "^1.3.2",
+    "through2": "^2.0.0"
+  },
+  "devDependencies": {
+    "tape": "^4.0.0"
+  },
+  "scripts": {
+    "test": "standard && tape test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tableflip/git-days.git"
+  },
+  "keywords": [
+    "git",
+    "project",
+    "management"
+  ],
+  "author": "Alan Shaw",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tableflip/git-days/issues"
+  },
+  "homepage": "https://github.com/tableflip/git-days#readme"
+}
