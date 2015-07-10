@@ -1,3 +1,4 @@
+var path = require('path')
 var log = require('git-log')
 var Multi = require('multi-stream')
 var moment = require('moment')
@@ -6,6 +7,8 @@ var clcTTY = require('cli-color-tty')
 var once = require('once')
 
 module.exports = function (repos, opts, cb) {
+  repos = Array.isArray(repos) ? repos : [repos]
+
   if (typeof opts === 'function') {
     cb = opts
     opts = {}
@@ -32,6 +35,7 @@ module.exports = function (repos, opts, cb) {
         repo += '/.git'
       }
     }
+    repo = path.resolve(repo)
     return multi.pull(log(repo))
   }, multi)
 
@@ -40,14 +44,13 @@ module.exports = function (repos, opts, cb) {
       data[commit.author.name] = data[commit.author.name] || {}
 
       var commitDate = moment(commit.date)
-
-      if (opts.from && commitDate.isBefore(opts.from)) return
-      if (opts.to && commitDate.isAfter(opts.to)) return
-
       var dateKey = commitDate.format('YYYY-MM-DD')
 
       data[commit.author.name][dateKey] = data[commit.author.name][dateKey] || {}
       data[commit.author.name][dateKey].commits = data[commit.author.name][dateKey].commits || []
+
+      if (opts.from && commitDate.isBefore(opts.from)) return
+      if (opts.to && commitDate.isAfter(opts.to)) return
 
       data[commit.author.name][dateKey].commits.push(commit)
     })
@@ -59,6 +62,8 @@ module.exports = function (repos, opts, cb) {
 
 // TODO: opts should include table sort field
 function createPrinter (opts) {
+  opts = opts || {}
+
   var clc = clcTTY(opts.isTTY)
 
   return function (data) {

@@ -1,4 +1,4 @@
-# git-days
+# git-days [![Build Status](https://travis-ci.org/tableflip/git-days.svg)](https://travis-ci.org/tableflip/git-days) [![Dependency Status](https://david-dm.org/tableflip/git-days.svg)](https://david-dm.org/tableflip/git-days)
 How many days did you work on that project?
 
 CLI tool to get a print out of how many days each committer committed to a project and how many total commits they've made.
@@ -53,3 +53,5 @@ e.g.
 git-days /path/to/repo/.git --to 2015-01-01
 ```
 
+---
+[![js-standard-style](https://cdn.rawgit.com/feross/standard/master/badge.svg)](https://github.com/feross/standard)
