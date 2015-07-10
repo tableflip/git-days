@@ -1,6 +1,6 @@
 {
   "name": "git-days",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "How many days did you work on that project?",
   "main": "index.js",
   "bin": {
