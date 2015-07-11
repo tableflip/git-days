@@ -95,21 +95,21 @@ function createPrinter (opts) {
 }
 
 function createPrintSorter (key) {
-  var dir = key[0] == '-' ? '-' : '+'
+  var dir = key[0] === '-' ? '-' : '+'
 
-  key = key[0] == '-' || key[0] == '+' ? key.slice(1) : key
+  key = key[0] === '-' || key[0] === '+' ? key.slice(1) : key
   key = key.toLowerCase()
 
   return function (a, b) {
     a = a[key]
     b = b[key]
 
-    if (Object.prototype.toString.call(a) == '[object String]') {
+    if (Object.prototype.toString.call(a) === '[object String]') {
       a = a.toLowerCase()
       b = b.toLowerCase()
     }
 
-    if (dir == '+') {
+    if (dir === '+') {
       if (a < b) return -1; else if (a > b) return 1
     } else {
       if (a < b) return 1; else if (a > b) return -1
