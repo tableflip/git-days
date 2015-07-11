@@ -55,3 +55,15 @@ git-days /path/to/repo/.git --to 2015-01-01
 
 ---
 [![js-standard-style](https://cdn.rawgit.com/feross/standard/master/badge.svg)](https://github.com/feross/standard)
+
+### `sort`
+Sort the table by the specified column. Prefix with "-" to change sort direction to descending. Default is sort by author name, ascending.
+e.g.
+
+```sh
+# Sort by commits ascending
+git-days /path/to/repo/.git --sort commits
+
+# Sort by days descending
+git-days /path/to/repo/.git --sort=-days
+```

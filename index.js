@@ -60,25 +60,20 @@ module.exports = function (repos, opts, cb) {
     })
 }
 
-// TODO: opts should include table sort field
 function createPrinter (opts) {
   opts = opts || {}
+  opts.sort = opts.sort || 'author'
 
   var clc = clcTTY(opts.isTTY)
 
   return function (data) {
+    var info = []
     var authors = Object.keys(data)
-
-    authors.sort(function (a, b) {
-      a = a.toLowerCase()
-      b = b.toLowerCase()
-      if (a < b) return -1; else if (a > b) return 1; else return 0
-    })
 
     var table = new Table({head: ['Author', 'Days', 'Commits']})
     var totals = {days: 0, commits: 0}
 
-    authors.forEach(function (author) {
+    info = authors.map(function (author) {
       var dates = Object.keys(data[author])
       var commits = dates.reduce(function (total, date) {
         return total + data[author][date].commits.length
@@ -87,12 +82,38 @@ function createPrinter (opts) {
       totals.days += dates.length
       totals.commits += commits
 
-      table.push([author, dates.length, commits])
+      return {author: author, days: dates.length, commits: commits}
     })
+
+    info.sort(createPrintSorter(opts.sort))
+    info.forEach(function (i) { table.push([i.author, i.days, i.commits]) })
 
     console.log(table.toString())
     console.log('Total:', clc.bold(totals.days), 'days', clc.white('(' + totals.commits + ' commits)'))
     console.log()
+  }
+}
+
+function createPrintSorter (key) {
+  var dir = key[0] == '-' ? '-' : '+'
+
+  key = key[0] == '-' || key[0] == '+' ? key.slice(1) : key
+  key = key.toLowerCase()
+
+  return function (a, b) {
+    a = a[key]
+    b = b[key]
+
+    if (Object.prototype.toString.call(a) == '[object String]') {
+      a = a.toLowerCase()
+      b = b.toLowerCase()
+    }
+
+    if (dir == '+') {
+      if (a < b) return -1; else if (a > b) return 1
+    } else {
+      if (a < b) return 1; else if (a > b) return -1
+    }
   }
 }
 
