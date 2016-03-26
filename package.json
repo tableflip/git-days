@@ -7,7 +7,7 @@
     "git-days": "bin/git-days.js"
   },
   "dependencies": {
-    "cli-color-tty": "^1.0.1",
+    "cli-color-tty": "^2.0.0",
     "cli-table": "^0.3.1",
     "git-log": "^0.0.1",
     "minimist": "^1.1.1",
@@ -17,7 +17,7 @@
     "through2": "^2.0.0"
   },
   "devDependencies": {
-    "standard": "^4.5.2",
+    "standard": "^6.0.8",
     "tape": "^4.0.0"
   },
   "scripts": {
