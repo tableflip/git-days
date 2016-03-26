@@ -2,4 +2,7 @@
 var argv = require('minimist')(process.argv.slice(2))
 var days = require('../')
 
-days(argv._, argv)
+var repos = argv._
+if (!repos.length) repos = process.cwd()
+
+days(repos, argv)
