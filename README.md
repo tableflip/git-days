@@ -7,7 +7,8 @@ CLI tool to get a print out of how many days each committer committed to a proje
 
 ```sh
 npm install -g git-days
-git-days /path/to/project/.git /path/to/related/project/repo/.git
+cd /path/to/project
+git-days
 ```
 
 Output:
@@ -38,19 +39,19 @@ Total: 157 days (1080 commits)
 ## Options
 
 ### `from`
-Only consider commits after this date. An ISO formatted date passed to moment. 
+Only consider commits after this date. An ISO formatted date passed to moment.
 e.g.
 
 ```sh
-git-days /path/to/repo/.git --from 2015-07-10
+git-days --from 2015-07-10
 ```
 
 ### `to`
-Only consider commits before this date. An ISO formatted date passed to moment. 
+Only consider commits before this date. An ISO formatted date passed to moment.
 e.g.
 
 ```sh
-git-days /path/to/repo/.git --to 2015-01-01
+git-days --to 2015-01-01
 ```
 
 ### `sort`
@@ -59,10 +60,17 @@ e.g.
 
 ```sh
 # Sort by commits ascending
-git-days /path/to/repo/.git --sort commits
+git-days --sort commits
 
 # Sort by days descending
-git-days /path/to/repo/.git --sort=-days
+git-days --sort=-days
+```
+
+## Specify project path(s)
+Perhaps your project is split over multiple repos. No problem!
+
+```sh
+git-days /path/to/project /path/to/related/project/repo
 ```
 
 ---
