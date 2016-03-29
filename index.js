@@ -46,12 +46,11 @@ module.exports = function (repos, opts, cb) {
       var commitDate = moment(commit.date)
       var dateKey = commitDate.format('YYYY-MM-DD')
 
-      data[commit.author.name][dateKey] = data[commit.author.name][dateKey] || {}
-      data[commit.author.name][dateKey].commits = data[commit.author.name][dateKey].commits || []
-
       if (opts.from && commitDate.isBefore(opts.from)) return
       if (opts.to && commitDate.isAfter(opts.to)) return
 
+      data[commit.author.name][dateKey] = data[commit.author.name][dateKey] || {}
+      data[commit.author.name][dateKey].commits = data[commit.author.name][dateKey].commits || []
       data[commit.author.name][dateKey].commits.push(commit)
     })
     .on('error', cb)
