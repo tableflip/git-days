@@ -74,4 +74,7 @@ git-days /path/to/project /path/to/related/project/repo
 ```
 
 ---
+
+A [(╯°□°）╯︵TABLEFLIP](https://tableflip.io) side project.
+
 [![js-standard-style](https://cdn.rawgit.com/feross/standard/master/badge.svg)](https://github.com/feross/standard)
